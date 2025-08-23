@@ -1,18 +1,35 @@
 "use client";
 
-import { ReactNode } from "react";
-import { ThemeProvider } from "next-themes";
-import NextNProgress from "nextjs-progressbar";
+import Layout from "@/components/layouts";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { ReactNode, useMemo, useState } from "react";
 
 export default function Providers({ children }: { children: ReactNode }) {
+  const [mode, setMode] = useState<"light" | "dark">("dark");
+
+  // tạo theme mỗi khi mode thay đổi
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode]
+  );
+
   return (
-    <ThemeProvider attribute="class" defaultTheme="light">
-      <NextNProgress
-        color="red"
-        height={4}
-        options={{ showSpinner: false }}
-      />
-      {children}
-    </ThemeProvider>
+    <AppRouterCacheProvider options={{ key: "mui" }}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Layout
+          mode={mode}
+          toggleMode={() => setMode(mode === "light" ? "dark" : "light")}
+        >
+          {children}
+        </Layout>
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   );
 }
