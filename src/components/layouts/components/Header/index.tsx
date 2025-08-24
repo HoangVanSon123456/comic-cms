@@ -13,24 +13,23 @@ export default function Header({
   toggleMode: () => void;
   mode: "light" | "dark";
 }) {
-  console.log(toggleMode, "toggleMode");
   return (
-    <div className="flex w-full items-center justify-center gap-5">
-      <div className="flex items-center py-2.5">
+    <div className="flex w-full items-center justify-center gap-3">
+      <div className="flex items-center py-2">
         <Image
           src="https://st.truyenqqgo.com/template/frontend/images/logo-icon.png"
           alt="TruyenQQ"
-          width={40}
-          height={40}
+          width={30}
+          height={30}
           unoptimized
         />
-        <Typography sx={{ fontSize: "1.5rem", textTransform: "uppercase" }}>
+        <Typography sx={{ fontSize: "1rem", textTransform: "uppercase" }}>
           truyen
         </Typography>
         <Typography
           sx={{
             color: "orange",
-            fontSize: "1.5rem",
+            fontSize: "1rem",
             textTransform: "uppercase",
           }}
         >

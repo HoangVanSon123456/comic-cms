@@ -1,5 +1,5 @@
-import HomeClient from "@/components/templates/HomeClient";
+import Dashboard from "@/components/templates/Dashboard";
 
 export default function Home() {
-  return <HomeClient />;
+  return <Dashboard />;
 }

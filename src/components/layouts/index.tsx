@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NavBar from "./components/Navbar";
 
 export default function Layout({
   children,
@@ -14,23 +15,13 @@ export default function Layout({
   mode: "light" | "dark";
 }) {
   return (
-    <Box className="flex flex-col flex-1 h-screen overflow-hidden">
+    <Box className="flex flex-col min-h-screen">
       <Header toggleMode={toggleMode} mode={mode} />
+      <NavBar />
 
-      <Box className="w-full flex" sx={{ maxHeight: `calc( 100vh - 45px )` }}>
-        {/* <LeftMenu /> */}
+      <Box className="flex-1 overflow-auto w-full">{children}</Box>
 
-        <Box
-          className="flex flex-col w-full relative"
-          sx={{
-            height: `calc( 100vh - 45px )`,
-            overflow: "auto",
-          }}
-        >
-          <Box className="w-full">{children}</Box>
-          <Footer />
-        </Box>
-      </Box>
+      <Footer />
     </Box>
   );
 }
