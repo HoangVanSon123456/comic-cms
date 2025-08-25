@@ -4,15 +4,17 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
-import { BLACK, ORANGE, WHITE } from "@/components/helper/color";
+import { ORANGE, WHITE } from "@/components/helper/color";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-export default function Header({
-  toggleMode,
-  mode,
-}: {
-  toggleMode: () => void;
-  mode: "light" | "dark";
-}) {
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { toggleTheme } from "@/redux/reducer/themeReducer";
+
+export default function Header() {
+  const mode = useSelector((state: RootState) => state.theme.mode);
+
+  const dispatch = useDispatch();
+
   return (
     <div className="flex w-full items-center justify-center gap-3">
       <div className="flex items-center py-2">
@@ -23,9 +25,7 @@ export default function Header({
           height={30}
           unoptimized
         />
-        <Typography sx={{ fontSize: "1rem", textTransform: "uppercase" }}>
-          truyen
-        </Typography>
+        <Typography sx={{ fontSize: "1rem", textTransform: "uppercase" }}>truyen</Typography>
         <Typography
           sx={{
             color: "orange",
@@ -39,13 +39,13 @@ export default function Header({
 
       {mode === "dark" ? (
         <div className="rounded-full border border-white flex items-center justify-center">
-          <IconButton sx={{ color: WHITE }} onClick={toggleMode}>
+          <IconButton sx={{ color: WHITE }} onClick={() => dispatch(toggleTheme())}>
             <LightbulbOutlinedIcon />
           </IconButton>
         </div>
       ) : (
         <div className="rounded-full border border-amber-500 flex items-center justify-center">
-          <IconButton sx={{ color: ORANGE }} onClick={toggleMode}>
+          <IconButton sx={{ color: ORANGE }} onClick={() => dispatch(toggleTheme())}>
             <NightlightOutlinedIcon />
           </IconButton>
         </div>

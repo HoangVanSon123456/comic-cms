@@ -1,3 +1,4 @@
+'use client';
 import StoryDetails from "@/components/templates/StoryDetails";
 import React from "react";
 

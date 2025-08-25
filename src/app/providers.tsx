@@ -1,14 +1,14 @@
 "use client";
 
 import Layout from "@/components/layouts";
+import { RootState } from "@/redux/store";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useMemo } from "react";
+import { useSelector } from "react-redux";
 
 export default function Providers({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<"light" | "dark">("dark");
-
-  // tạo theme mỗi khi mode thay đổi
+  const mode = useSelector((state: RootState) => state.theme.mode);
   const theme = useMemo(
     () =>
       createTheme({
@@ -23,12 +23,7 @@ export default function Providers({ children }: { children: ReactNode }) {
     <AppRouterCacheProvider options={{ key: "mui" }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout
-          mode={mode}
-          toggleMode={() => setMode(mode === "light" ? "dark" : "light")}
-        >
-          {children}
-        </Layout>
+        <Layout>{children}</Layout>
       </ThemeProvider>
     </AppRouterCacheProvider>
   );

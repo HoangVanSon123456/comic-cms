@@ -3,6 +3,9 @@ import { Card, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toSlug } from "@/components/helper/utils";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { BLACK, WHITE } from "@/components/helper/color";
 
 type Props = {
   id: number;
@@ -25,6 +28,7 @@ export default function StoryCard({
 }: Props) {
   const [visible, setVisible] = useState(true);
   const router = useRouter();
+  const mode = useSelector((state: RootState) => state.theme.mode);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,7 +47,6 @@ export default function StoryCard({
         {/* Hình ảnh bìa truyện */}
         <div className="w-full ">
           <Image
-            // src="https://cdn.pixabay.com/photo/2023/07/19/06/56/girl-8136232_640.jpg"
             src={image}
             alt=""
             width={200}
@@ -63,15 +66,21 @@ export default function StoryCard({
           ) : undefined}
         </div>
       </Card>
-      <div className="flex justify-center mt-2">
-        <Typography fontSize={15} className="text-white">
-          {storyName}
-        </Typography>
+      <div
+        style={{
+          color: mode === "dark" ? WHITE : BLACK,
+        }}
+        className="flex justify-center mt-2"
+      >
+        <Typography fontSize={15}>{storyName}</Typography>
       </div>
-      <div className="flex justify-center mt-0.5">
-        <Typography fontSize={15} className="text-white">
-          Chap&nbsp;{chapNumber}
-        </Typography>
+      <div
+        style={{
+          color: mode === "dark" ? WHITE : BLACK,
+        }}
+        className="flex justify-center mt-0.5"
+      >
+        <Typography fontSize={15}>Chap&nbsp;{chapNumber}</Typography>
       </div>
     </div>
   );

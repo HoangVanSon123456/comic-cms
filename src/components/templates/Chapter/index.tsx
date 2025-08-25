@@ -29,24 +29,17 @@ const chapter: Chapter = {
 export default function Chapter() {
   const router = useRouter();
   return (
-    <>
+    <div className="">
       <div className="flex justify-center py-6 bg-neutral-900 text-white">
-        <Card className="w-full max-w-4xl bg-neutral-800 shadow-lg rounded-xl">
+        <Card className="w-2/3 bg-neutral-800 shadow-lg rounded-xl">
           <CardContent className="space-y-4">
             {/* Breadcrumb */}
             <div className="text-sm text-gray-400 space-x-2">
-              <span
-                className="cursor-pointer hover:underline"
-                onClick={() => router.push("/")}
-              >
+              <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>
                 Trang Chủ
               </span>{" "}
-              /
-              <span className="cursor-pointer hover:underline">
-                {" "}
-                Dương Dịch Vi Hoạn
-              </span>{" "}
-              /<span className="text-gray-200"> Chương 274</span>
+              /<span className="cursor-pointer hover:underline"> Dương Dịch Vi Hoạn</span> /
+              <span className="text-gray-200"> Chương 274</span>
             </div>
 
             {/* Tiêu đề Chapter */}
@@ -59,20 +52,10 @@ export default function Chapter() {
 
             {/* Nút điều hướng */}
             <div className="flex justify-center gap-3">
-              <Button
-                variant="contained"
-                color="info"
-                size="small"
-                className="rounded-lg"
-              >
+              <Button variant="contained" color="info" size="small" className="rounded-lg">
                 ← Chap trước
               </Button>
-              <Button
-                variant="contained"
-                color="info"
-                size="small"
-                className="rounded-lg"
-              >
+              <Button variant="contained" color="info" size="small" className="rounded-lg">
                 Chap sau →
               </Button>
             </div>
@@ -82,17 +65,10 @@ export default function Chapter() {
       <div className="flex flex-col">
         {chapter.images.map((src, idx) => (
           <div key={idx} className="w-full flex justify-center">
-            {/* <Image
-              src={src}
-              alt={`Page ${idx + 1}`}
-              width={800}
-              height={1200}
-              className="rounded-lg shadow-md"
-            /> */}
             <Image
               src={src}
               alt="Dưỡng Địch Vi Hoạn"
-              width={800}
+              width={900}
               height={1200}
               className="rounded-lg object-cover shadow-md"
               unoptimized
@@ -100,24 +76,14 @@ export default function Chapter() {
           </div>
         ))}
         <div className="flex justify-center gap-3 mt-5">
-          <Button
-            variant="contained"
-            color="info"
-            size="small"
-            className="rounded-lg"
-          >
+          <Button variant="contained" color="info" size="small" className="rounded-lg">
             ← Chap trước
           </Button>
-          <Button
-            variant="contained"
-            color="info"
-            size="small"
-            className="rounded-lg"
-          >
+          <Button variant="contained" color="info" size="small" className="rounded-lg">
             Chap sau →
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

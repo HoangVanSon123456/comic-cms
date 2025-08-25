@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "../../public/styles/globals.css";
 import Providers from "./providers"; // client component
 import { ReactNode } from "react";
+import { ReduxProvider } from "@/lib/redux";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={openSans.className}>
-        <Providers>{children}</Providers>
+        <ReduxProvider>
+          <Providers>{children}</Providers>
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -40,10 +40,7 @@ export default function ChapterList() {
   // </div>
   return (
     <>
-      <Typography
-        variant="h6"
-        className="flex items-center gap-2 font-semibold mb-3"
-      >
+      <Typography variant="h6" className="flex items-center gap-2 font-semibold mb-3">
         📚 Danh sách chương
       </Typography>
 
@@ -62,11 +59,7 @@ export default function ChapterList() {
               <div
                 key={idx}
                 className="flex justify-between items-center px-3 py-2 border-b bg-[#242526] hover:bg-neutral-800 transition cursor-pointer"
-                onClick={() =>
-                  router.push(
-                    `/story/${toSlug(storyName)}-${id}/chapter-${ch.id}`
-                  )
-                }
+                onClick={() => router.push(`/story/${toSlug(storyName)}-${id}/chapter-${ch.id}`)}
               >
                 <Typography variant="body2" className="font-medium">
                   Chương {ch.id}
